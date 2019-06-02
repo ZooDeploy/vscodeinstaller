@@ -9,12 +9,17 @@ if ((Get-PackageProvider).Name -notcontains 'NuGet') {
 }
 
 ## Install mandatory PowerShell modules
-$mandatoryModules = @('PSScriptAnalyzer', 'Pester', 'psake', 'PlatyPS')
+$mandatoryModules = @('PSScriptAnalyzer', 'psake', 'PlatyPS')
 
 $mandatoryModules | ForEach-Object {
     if (-not (Get-Module -Name $_ -ListAvailable)) {
         Install-Module -Name $_ -Scope CurrentUser -SkipPublisherCheck -Force
     }
+}
+
+## Requires Pester v4 for unit tests
+if ((Get-Command Invoke-Pester -ErrorAction SilentlyContinue).Version.Major -lt 4) {
+    Install-Module -Name 'Pester' -Scope CurrentUser -SkipPublisherCheck -Force
 }
 
 ## Kick off psake
