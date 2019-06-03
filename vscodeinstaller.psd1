@@ -56,7 +56,7 @@
             Tags = @('vscode','install', 'uninstall', 'VisualStudioCode', 'git', 'PSEdition_Desktop', 'Windows')
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/ZooDeploy/vscodeinstaller/blob/master/LICENSE'
 
             # A URL to the main website for this project.
             ProjectUri = 'https://github.com/ZooDeploy/vscodeinstaller'
