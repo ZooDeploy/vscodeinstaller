@@ -7,7 +7,7 @@ InModuleScope $ThisModuleName {
 
     Describe 'Unit tests for function Install-PSCore' {
 
-        it 'should return exitcode 1603 if PowerShell Core is already installed' {
+        it 'should return exitcode 1638 if PowerShell Core is already installed' {
             mock -ModuleName $ThisModuleName -CommandName Test-Installation -MockWith {
                 return $true
             }
