@@ -12,11 +12,11 @@ function New-ShellLauncherConfiguration {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/New-ShellLauncherConfiguration.md
     #>
-    [OutputType([System.String])]
     [CmdletBinding(
         SupportsShouldProcess, ConfirmImpact='None',
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-InstalledVSCodeExtension.md'
     )]
+    [OutputType([System.String])]
     Param()
 
     ## Generate cmd + PowerShell entry

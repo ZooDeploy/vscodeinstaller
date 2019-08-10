@@ -42,10 +42,10 @@ function Invoke-VSCodeDownload {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeDownload.md
     #>
-    [OutputType([System.IO.FileInfo])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeDownload.md'
     )]
+    [OutputType([System.IO.FileInfo])]
     param (
         [ValidateSet('User', 'System')]
         [System.String] $InstallerType = 'User',

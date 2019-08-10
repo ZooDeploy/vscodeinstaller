@@ -108,11 +108,11 @@ function Invoke-VSCodeInstaller {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeInstaller.md
     #>
-    [OutputType([System.String])]
     [CmdletBinding(
         DefaultParameterSetName='None',
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeInstaller.md'
     )]
+    [OutputType([System.String])]
     [Alias('ivsc')]
     param (
         [System.String] $Template,

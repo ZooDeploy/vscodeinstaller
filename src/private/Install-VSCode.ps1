@@ -14,10 +14,10 @@ function Install-VSCode {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Install-VSCode.md
     #>
-    [OutputType([System.Int32])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Install-VSCode.md'
     )]
+    [OutputType([System.Int32])]
     param (
         [Parameter(Mandatory)]
         [System.IO.FileInfo] $FilePath

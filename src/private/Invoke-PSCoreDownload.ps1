@@ -37,10 +37,10 @@ function Invoke-PSCoreDownload {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-PSCoreDownload.md
     #>
-    [OutputType([System.IO.FileInfo])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-PSCoreDownload.md'
     )]
+    [OutputType([System.IO.FileInfo])]
     param(
         [System.IO.FileInfo] $DestinationPath = "$env:WINDIR\Temp",
 

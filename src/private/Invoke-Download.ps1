@@ -15,10 +15,10 @@ function Invoke-Download {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-Download.md
     #>
-    [OutputType([System.IO.FileInfo])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-Download.md'
     )]
+    [OutputType([System.IO.FileInfo])]
     param (
         [Parameter(Mandatory)]
         [System.IO.FileInfo] $DestinationPath,

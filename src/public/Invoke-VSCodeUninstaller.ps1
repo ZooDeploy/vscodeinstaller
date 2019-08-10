@@ -26,11 +26,11 @@ function Invoke-VSCodeUninstaller {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeUninstaller.md
     #>
-    [OutputType([System.String])]
     [CmdletBinding(
         SupportsShouldProcess, ConfirmImpact='High',
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeUninstaller.md'
     )]
+    [OutputType([System.String])]
     [Alias('uvsc')]
     param (
         [System.Management.Automation.SwitchParameter] $IncludeGit,

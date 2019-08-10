@@ -45,10 +45,10 @@ function Test-Installation {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Test-Installation.md
     #>
-    [OutputType([System.Boolean])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Test-Installation.md'
     )]
+    [OutputType([System.Boolean])]
     Param(
         [Parameter(ParameterSetName='RegistryUninstallKey', Mandatory)]
         [System.String] $RegistryUninstallKey,

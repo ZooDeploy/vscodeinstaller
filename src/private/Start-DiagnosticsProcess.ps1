@@ -16,11 +16,11 @@ function Start-DiagnosticsProcess {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Start-DiagnosticsProcess.md
     #>
-    [OutputType([System.String])]
     [CmdletBinding(
         SupportsShouldProcess, ConfirmImpact='Medium',
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-InstalledVSCodeExtension.md'
     )]
+    [OutputType([System.String])]
     param (
         [Parameter(Mandatory)]
         [System.IO.FileInfo] $FilePath,

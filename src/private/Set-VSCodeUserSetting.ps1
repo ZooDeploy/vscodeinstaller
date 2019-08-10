@@ -23,8 +23,11 @@ function Set-VSCodeUserSetting {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Set-VSCodeUserSetting.md
     #>
+    [CmdletBinding(
+        SupportsShouldProcess, ConfirmImpact='Medium',
+        HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Set-VSCodeUserSetting.md'
+    )]
     [OutputType([System.String])]
-    [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Medium')]
     param (
         [Parameter(ParameterSetName='SourceFile', Mandatory, ValueFromPipeline)]
         [System.IO.FileInfo] $SourceFile,

@@ -27,10 +27,10 @@ function Invoke-GitDownload {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeExtensionDownload.md
     #>
-    [OutputType([System.IO.FileInfo])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-GitDownload.md'
     )]
+    [OutputType([System.IO.FileInfo])]
     param(
         [System.IO.FileInfo] $DestinationPath = "$env:WINDIR\temp",
 

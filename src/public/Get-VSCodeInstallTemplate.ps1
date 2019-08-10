@@ -20,10 +20,10 @@ function Get-VSCodeInstallTemplate {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-VSCodeInstallTemplate.md
     #>
-    [OutputType([System.String])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-VSCodeInstallTemplate.md'
     )]
+    [OutputType([System.String])]
     [Alias('gvit')]
     Param()
 

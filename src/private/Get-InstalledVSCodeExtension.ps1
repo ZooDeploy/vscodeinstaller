@@ -10,10 +10,10 @@ function Get-InstalledVSCodeExtension {
     .LINK
         https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-InstalledVSCodeExtension.md
     #>
-    [OutputType([System.String])]
     [CmdletBinding(
         HelpURI='https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-InstalledVSCodeExtension.md'
     )]
+    [OutputType([System.String])]
     param ()
 
     $vscodeCmd = @(
