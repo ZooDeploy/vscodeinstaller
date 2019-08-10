@@ -94,8 +94,15 @@ Describe 'Unit tests for function Invoke-VSCodeInstaller' {
         mock -ModuleName $ThisModuleName -CommandName Resolve-Path {
             $true
         }
-        mock -ModuleName $ThisModuleName -CommandName Test-Installation {
-            $true
+        mock -ModuleName $ThisModuleName -CommandName Get-ChildItem -MockWith {
+            [PSCustomObject]@{
+                PSPath = 'Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\'
+            }
+        }
+        mock -ModuleName $ThisModuleName -CommandName Get-ItemProperty -MockWith {
+            [PSCustomObject]@{
+                DisplayName = 'PowerShell 7-preview-x64'
+            }
         }
         mock -ModuleName $ThisModuleName -CommandName Write-Progress {
         }
@@ -189,9 +196,6 @@ Describe 'Unit tests for function Invoke-VSCodeInstaller' {
     it "should call 'Invoke-PSCoreDownload' and 'Install-PSCore' 1 time if 'PowerShell Core' is not installed." {
         mock -ModuleName $ThisModuleName -CommandName Resolve-Path {
             $true
-        }
-        mock -ModuleName $ThisModuleName -CommandName Test-Installation {
-            $false
         }
         mock -ModuleName $ThisModuleName -CommandName Write-Progress {
         }

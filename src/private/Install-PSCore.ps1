@@ -23,9 +23,15 @@ function Install-PSCore {
         [System.IO.FileInfo] $FilePath
     )
 
-    $isInstalledPSCore = Test-Installation -DisplayName '*PowerShell*6*' -Wildcard -ErrorAction SilentlyContinue
+    $regPath = @(
+                'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\',
+                'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\'
+    )
+    ## Check if PowerShell Core is already installed
+    $PSCore = Get-ChildItem $regPath  | Get-ItemProperty | Select-Object DisplayName
+    $PSCore = $PSCore | Where-Object DisplayName -match 'PowerShell [6-99]'
 
-    if ($isInstalledPSCore) {
+    if ($PSCore) {
         Write-Verbose ($localized.SoftwareIsAlreadyInstalled -f $localized.PSCore)
         return 1638
     }
@@ -51,4 +57,3 @@ function Install-PSCore {
         }
     }
 }
-

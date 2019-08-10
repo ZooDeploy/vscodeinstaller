@@ -8,15 +8,24 @@ InModuleScope $ThisModuleName {
     Describe 'Unit tests for function Install-PSCore' {
 
         it 'should return exitcode 1638 if PowerShell Core is already installed' {
-            mock -ModuleName $ThisModuleName -CommandName Test-Installation -MockWith {
-                return $true
+            mock -ModuleName $ThisModuleName -CommandName Get-ChildItem -MockWith {
+                [PSCustomObject]@{
+                    PSPath = 'Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\'
+                }
+            }
+            mock -ModuleName $ThisModuleName -CommandName Get-ItemProperty -MockWith {
+                [PSCustomObject]@{
+                    DisplayName = 'PowerShell 7-preview-x64'
+                }
             }
             Install-PSCore -FilePath 'C:\MockFakePath' | should be 1638
         }
 
         it 'should call Start-Process 1 time if PowerShell Core is not installed' {
-            mock -ModuleName $ThisModuleName -CommandName Test-Installation -MockWith {
-                return $false
+            mock -ModuleName $ThisModuleName -CommandName Get-ItemProperty -MockWith {
+                [PSCustomObject]@{
+                    DisplayName = 'mock'
+                }
             }
             mock -ModuleName $ThisModuleName -CommandName Start-Process -MockWith {
                 return 0

@@ -75,6 +75,8 @@ Describe 'Unit tests for function Invoke-VSCodeUninstaller' {
         mock -ModuleName $ThisModuleName -CommandName Get-ChildItem {
             return $false
         }
+        mock -ModuleName $ThisModuleName -CommandName Get-ItemProperty -MockWith {
+        }
         mock -ModuleName $ThisModuleName -CommandName Select-Object {
             return $false
         }

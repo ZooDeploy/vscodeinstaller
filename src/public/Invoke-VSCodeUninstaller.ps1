@@ -136,8 +136,10 @@ function Invoke-VSCodeUninstaller {
                 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\',
                 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\'
             )
-            $PSCore = Get-ChildItem $regPath | Get-ItemProperty -ErrorAction SilentlyContinue
-            $PSCore = $PSCore | Where-Object DisplayName -like '*PowerShell*6*' -ErrorAction SilentlyContinue
+
+            ## Check if PowerShell Core is installed
+            $PSCore = Get-ChildItem $regPath  | Get-ItemProperty | Select-Object DisplayName, UninstallString
+            $PSCore = $PSCore | Where-Object DisplayName -match 'PowerShell [6-99]' -ErrorAction SilentlyContinue
 
             if ($PSCore) {
                 $psCoreUninstallString = $PSCore | Select-Object -ExpandProperty UninstallString

@@ -169,9 +169,16 @@ function Invoke-VSCodeInstaller {
         else {
             Write-Verbose $localized.ImportTemplateError
         }
+        ## Add PSCore to install queue if not already installed
         if ($Template -eq 'PowerShellCore') {
-            ## Add PSCore to install queue if not already installed
-            if (-not (Test-Installation -DisplayName "PowerShell*6*" -Wildcard)) {
+            $regPath = @(
+                'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\',
+                'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\'
+            )
+            $PSCore = Get-ChildItem $regPath  | Get-ItemProperty | Select-Object DisplayName
+            $PSCore = $PSCore | Where-Object DisplayName -match 'PowerShell [6-99]'
+
+            if (-not $PSCore) {
                 $installQueue.enqueue('installPSCore')
             }
             else {
