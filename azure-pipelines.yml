@@ -45,6 +45,9 @@ steps:
           git commit -m 'Update help docs [skip ci]'
           git push https://$(gitPAT)@github.com/ZooDeploy/vscodeinstaller.git
       }
+      else {
+          Write-Output 'All help docs are up to date. No changes will be pushed to Github.' 
+      }
 
 # Create VScodeInstaller module project artifact
 - task: CopyFiles@2
