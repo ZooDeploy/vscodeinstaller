@@ -92,3 +92,18 @@ Task BuildPrivateDocs -depends Analyze, UnitTest, BuildPublicDocs {
         }
     } -ArgumentList 'vscodeinstaller', "$PSScriptRoot\vscodeinstaller\vscodeinstaller.psd1", "$PSScriptRoot\docs" | Wait-Job | Receive-Job
 } -description 'Build help files from private functions'
+
+task FunctionalTest {
+    $ivpParam = @{
+        Path = "$PSScriptRoot\test\functional"
+        PassThru = $true
+        OutputFile = "$PSScriptroot\test\Test-Functional.XML"
+        OutputFormat = 'NUnitXML'
+    }
+    $testResults = Invoke-Pester @ivpParam
+
+    if ($testResults.FailedCount -gt 0) {
+        $testResults | Format-List
+        Write-Error -Message 'One or more functional tests failed. Build cannot continue!'
+    }
+} -description 'Run functional tests'
