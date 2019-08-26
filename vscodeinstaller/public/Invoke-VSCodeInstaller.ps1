@@ -144,7 +144,7 @@ function Invoke-VSCodeInstaller {
     if ($PSBoundParameters.ContainsKey('Template')) {
         $ildParam = @{
             BindingVariable = 'VSCodeTemplateData'
-            BaseDirectory = "$(($PSScriptRoot -split '\\src')[0])\data"
+            BaseDirectory = ($PSScriptRoot -split '\\public')[0]
             FileName = 'VSCodeTemplateData.psd1'
             ErrorAction = 'SilentlyContinue'
         }

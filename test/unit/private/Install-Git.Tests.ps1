@@ -1,6 +1,6 @@
 $ThisModulePath = ($PSScriptRoot -split '\\test')[0]
 $ThisModuleName = 'vscodeinstaller'
-Import-Module -Name "$ThisModulePath\$ThisModuleName.psd1" -Force
+Import-Module -Name "$ThisModulePath\vscodeinstaller\$ThisModuleName.psd1" -Force
 
 
 InModuleScope $ThisModuleName {
@@ -11,7 +11,7 @@ InModuleScope $ThisModuleName {
             'Mock User Mock Email'
         }
 
-        it 'should return exitcode 1638 if Git is already installed' {
+        it 'should return exitcode 1603 if Git is already installed' {
             mock -ModuleName $ThisModuleName -CommandName Test-Path -MockWith {
                 return $true
             }

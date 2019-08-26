@@ -1,7 +1,7 @@
 $ThisModulePath = ($PSScriptRoot -split '\\test')[0]
 $ThisModuleName = 'vscodeinstaller'
-Import-Module -Name "$ThisModulePath\$ThisModuleName.psd1" -Force
-Import-LocalizedData -BindingVariable VSCodeTemplateData -BaseDirectory "$ThisModulePath\data" -FileName 'VSCodeTemplateData.psd1'
+Import-Module -Name "$ThisModulePath\vscodeinstaller\$ThisModuleName.psd1" -Force
+Import-LocalizedData -BindingVariable VSCodeTemplateData -BaseDirectory "$ThisModulePath\vscodeinstaller\" -FileName 'VSCodeTemplateData.psd1'
 
 
 Describe 'Unit tests for function Get-VSCodeInstallTemplate' {

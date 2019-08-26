@@ -29,7 +29,7 @@ function Get-VSCodeInstallTemplate {
 
     $ildParam = @{
         BindingVariable = 'VSCodeTemplateData'
-        BaseDirectory = "$(($PSScriptRoot -split '\\src')[0])\data"
+        BaseDirectory = ($PSScriptRoot -split '\\public')[0]
         FileName = 'VSCodeTemplateData.psd1'
         ErrorAction = 'SilentlyContinue'
     }
@@ -48,5 +48,6 @@ function Get-VSCodeInstallTemplate {
     }
     else {
         'No templata data found.'
+        $PSScriptRoot
     }
 }

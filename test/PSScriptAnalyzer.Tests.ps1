@@ -1,6 +1,6 @@
 $ThisModulePath = ($PSScriptRoot -split '\\test')[0]
 $ThisModuleName = 'vscodeinstaller'
-Import-Module -Name "$ThisModulePath\$ThisModuleName.psd1" -Force
+Import-Module -Name "$ThisModulePath\vscodeinstaller\$ThisModuleName.psd1" -Force
 
 
 $rules = Get-ScriptAnalyzerRule

@@ -1,8 +1,8 @@
 $ThisModulePath = ($PSScriptRoot -split '\\test')[0]
 $ThisModuleName = 'vscodeinstaller'
 $lData = 'VSCodeInstallerStrings.psd1'
-Import-Module -Name "$ThisModulePath\$ThisModuleName.psd1" -Force
-Import-LocalizedData -BindingVariable localized -BaseDirectory "$ThisModulePath\data" -FileName $lData
+Import-Module -Name "$ThisModulePath\vscodeinstaller\$ThisModuleName.psd1" -Force
+Import-LocalizedData -BindingVariable localized -BaseDirectory "$ThisModulePath\vscodeinstaller\" -FileName $lData
 
 
 InModuleScope $ThisModuleName {

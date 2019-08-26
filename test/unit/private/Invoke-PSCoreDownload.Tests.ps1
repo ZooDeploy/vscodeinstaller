@@ -1,8 +1,8 @@
 $ThisModulePath = ($PSScriptRoot -split '\\test')[0]
 $ThisModuleName = 'vscodeinstaller'
 $lData = 'VSCodeInstallerStrings.psd1'
-Import-Module -Name "$ThisModulePath\$ThisModuleName.psd1" -Force
-Import-LocalizedData -BindingVariable localized -BaseDirectory "$ThisModulePath\data" -FileName $lData
+Import-Module -Name "$ThisModulePath\vscodeinstaller\$ThisModuleName.psd1" -Force
+Import-LocalizedData -BindingVariable localized -BaseDirectory "$ThisModulePath\vscodeinstaller\" -FileName $lData
 
 
 InModuleScope $ThisModuleName {
@@ -14,7 +14,7 @@ InModuleScope $ThisModuleName {
             @{
                 Arch  = 'x64'
                 PreviewVer = $true
-                PreviewVerTxt = ''
+                PreviewVerTxt = ' '
                 Previewtxt = 'Preview '
                 PSCoreFile = 'PowerShell-6.2.0-preview.3-win-x64.msi'
             }
@@ -22,13 +22,13 @@ InModuleScope $ThisModuleName {
                 Arch  = 'x64'
                 PreviewVer = $false
                 PreviewVerTxt = 'not '
-                Previewtxt = ''
+                Previewtxt = ' '
                 PSCoreFile = 'PowerShell-6.1.1-win-x64.msi'
             }
             @{
                 Arch  = 'x86'
                 PreviewVer = $true
-                PreviewVerTxt = ''
+                PreviewVerTxt = ' '
                 Previewtxt = 'Preview '
                 PSCoreFile = 'PowerShell-6.2.0-preview.3-win-x86.msi'
             }
@@ -36,7 +36,7 @@ InModuleScope $ThisModuleName {
                 Arch  = 'x86'
                 PreviewVer = $false
                 PreviewVerTxt = 'not '
-                Previewtxt = ''
+                Previewtxt = ' '
                 PSCoreFile = 'PowerShell-6.1.1-win-x86.msi'
             }
         )
@@ -64,7 +64,7 @@ InModuleScope $ThisModuleName {
 
         it 'should try to download the <Arch> <Previewtxt>version if parameter Architecture [<Arch>] and parameter PreviewVersion is <PreviewVerTxt>selected' -TestCases $testCases {
             param(
-                [string] $Arch,
+                [System.String] $Architecture,
                 $PreviewVer,
                 $Previewtxt,
                 $PSCoreFile
@@ -76,7 +76,7 @@ InModuleScope $ThisModuleName {
                 return 'C:\Mock\mock.exe'
             }
             $ipdParam = @{
-                Architecture = $Arch
+                Architecture = $Architecture
                 PreviewVersion = $PreviewVer
                 Verbose = $true
             }
