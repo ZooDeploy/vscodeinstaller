@@ -1,0 +1,69 @@
+# Azure Devops CI build pipeline for PowerShell module VSCodeInstaller
+# https://github.com/ZooDeploy/vscodeinstaller
+
+name: $(Build.DefinitionName)_$(Date:yyyyMMdd))
+
+trigger:
+- master
+
+queue:
+  name: Hosted VS2017
+
+steps:
+- checkout: self
+  clean: true
+  persistCredentials: true
+
+# Run build script
+- powershell: .\build.ps1
+  displayName: 'Run unit tests'
+
+- task: PublishTestResults@2
+  displayName: 'Publish test results'
+  inputs:
+    testRunner: 'NUnit'
+    testResultsFiles: '**/TEST-*.xml'
+    testRunTitle: 'Publish Unit Tests'
+
+# Update Github repository but skip CI if help docs have been updated through build process
+- task: PowerShell@2
+  displayName: 'Update Github repository'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git remote -v
+      Write-Host $(Build.Repository.LocalPath)
+      $result = git diff-index --name-only HEAD
+      
+      if ($result -match '\.md') {
+          ## Push updated help docs to Github repository
+          Write-Output 'Updating Github repository with updated help docs'
+          git config user.email $(gitUserName)
+          git config user.name $(gitUserEmail)
+          git checkout master
+          git add "$(Build.Repository.LocalPath)\docs\*"
+          git commit -m 'Update help docs [skip ci]'
+          git push https://$(gitPAT)@github.com/ZooDeploy/vscodeinstaller.git
+      }
+
+# Create VScodeInstaller module project artifact
+- task: CopyFiles@2
+  displayName: 'Create module project artifact'
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\drop\vscodeinstaller'
+    OverWrite: true
+
+# Create VScodeInstaller module artifact for PSGallery
+- task: CopyFiles@2
+  displayName: 'Create module artifact for PSGallery'
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)'
+    Contents: |
+      vscodeinstaller\**
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\drop\psgallery'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifacts'
+  inputs:
+    ArtifactName: 'VSCodeInstaller'
