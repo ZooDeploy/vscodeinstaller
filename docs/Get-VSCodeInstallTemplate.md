@@ -1,5 +1,5 @@
 ---
-external help file: VSCodeInstaller-help.xml
+external help file: vscodeinstaller-help.xml
 Module Name: vscodeinstaller
 online version: https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Get-VSCodeInstallTemplate.md
 schema: 2.0.0
@@ -43,6 +43,13 @@ Get-VSCodeInstallTemplate | Select-Object Description
 ```
 
 Outputs the latest available template descriptions only.
+
+### EXAMPLE 4
+```
+Get-VSCodeInstallTemplate | Select-Object Extensions
+```
+
+Outputs the latest available template extension names only.
 
 ## PARAMETERS
 

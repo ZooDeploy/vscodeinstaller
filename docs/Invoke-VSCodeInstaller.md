@@ -1,5 +1,5 @@
 ---
-external help file: VSCodeInstaller-help.xml
+external help file: vscodeinstaller-help.xml
 Module Name: vscodeinstaller
 online version: https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-VSCodeInstaller.md
 schema: 2.0.0
@@ -151,8 +151,8 @@ To find the full extension name go the Extensions panel in Visual Studio Code.
 The full name is located
 on the right to the extension name.
 
-Alternatively, the full name can also be found in the Visual Studio Marketplace URI of the extension, for example
-https://marketplace.visualstudio.com/itemdetails?itemName=ms-python.python
+Alternatively, the full name can also be found in the Visual Studio Marketplace URI of the extension, for
+example: https://marketplace.visualstudio.com/itemdetails?itemName=ms-python.python
 
 ```yaml
 Type: String[]
@@ -279,6 +279,9 @@ Accept wildcard characters: False
 The name of the template to use with the Invoke-VSCodeInstaller command.
 To see a list of available
 templates use the Get-VSCodeInstallTemplate command.
+
+You can define your own templates in the VSCodeTemplateData.psd1 file in the data section of the
+VSCodeInstaller module.
 
 ```yaml
 Type: String

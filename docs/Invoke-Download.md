@@ -1,6 +1,6 @@
 ---
-external help file: VSCodeInstaller-help.xml
-Module Name: vscodeinstaller
+external help file:
+Module Name:
 online version: https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Invoke-Download.md
 schema: 2.0.0
 ---

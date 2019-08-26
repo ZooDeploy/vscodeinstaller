@@ -1,6 +1,6 @@
 ---
-external help file: VSCodeInstaller-help.xml
-Module Name: vscodeinstaller
+external help file:
+Module Name:
 online version: https://github.com/zoodeploy/vscodeinstaller/blob/master/docs/Install-Git.md
 schema: 2.0.0
 ---
@@ -58,7 +58,7 @@ Accept wildcard characters: False
 ### -UserEmail
 Specifies the user email for commit information.
 The user email is globally set in the first-time Git
-setup routine
+setup routine.
 
 ```yaml
 Type: String
@@ -75,7 +75,7 @@ Accept wildcard characters: False
 ### -UserName
 Specifies the user name for commit information.
 The user name is globally set in the first-time Git setup
-routine
+routine.
 
 ```yaml
 Type: String
