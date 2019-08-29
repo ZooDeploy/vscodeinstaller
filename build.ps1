@@ -1,6 +1,6 @@
 [CmdletBinding()]
 Param(
-    [string[]]$Task = 'default'
+    [System.String[]] $Task = 'default'
 )
 
 ## Install NuGet provider
@@ -13,17 +13,19 @@ $mandatoryModules = @('PSScriptAnalyzer', 'psake', 'PlatyPS')
 
 $mandatoryModules | ForEach-Object {
     if (-not (Get-Module -Name $_ -ListAvailable)) {
-        Install-Module -Name $_ -Scope CurrentUser -SkipPublisherCheck -Force
+        Install-Module -Name $_ -Force
     }
 }
 
 ## Requires Pester v4 for unit tests
-if ((Get-Command Invoke-Pester -ErrorAction SilentlyContinue).Version.Major -lt 4) {
-    Install-Module -Name 'Pester' -Scope CurrentUser -SkipPublisherCheck -Force
+if (((Get-module 'Pester' -ListAvailable | Sort-Object Version)[-1]).Version.Major -lt 4) {
+    Install-Module -Name 'Pester' -SkipPublisherCheck -Force
 }
+
+Import-Module psake
 
 ## Kick off psake
 Invoke-psake -buildFile "$PSScriptRoot\psakeBuild.ps1" -taskList $Task
 
 ## Return non zero code if psake fails
-exit ([int]( -not $psake.build_success))
+exit ([System.Int32](-not $psake.build_success))
