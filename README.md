@@ -1,4 +1,7 @@
 # VSCodeInstaller
+
+[![Build Status](https://dev.azure.com/ZooDeploy/VSCodeInstaller/_apis/build/status/ZooDeploy.vscodeinstaller?branchName=master)](https://dev.azure.com/ZooDeploy/VSCodeInstaller/_build/latest?definitionId=1&branchName=master)
+
 Windows PowerShell module for installing and setting up Visual Studio Code.
  
 <ul>
@@ -7,6 +10,8 @@ Windows PowerShell module for installing and setting up Visual Studio Code.
    <li>Are you a PowerShell coder? Use VSCodeInstaller to install and set up Visual Studio Code as your PowerShell coding ecosystem including PowerShell Core, set PowerShell as the VSCode default language and work with multiple shells (PS, PSCore, cmd, Git bash) parallel in the integrated VSCode terminal via the ShellLauncher extension.</li>
    <li>Do you want to uninstall VSCode? Use VSCodeInstaller to completely remove VSCode and optional remove Git and PowerShell Core.</li>
 </ul>
+
+![Invoke-VSCodeInstaller](https://github.com/ZooDeploy/VSCodeInstaller/blob/master/img/ivsc01.gif)
 
 ## Installation
 To install the module from PowerShell Gallery, use the PowerShell Cmdlet:
@@ -46,7 +51,7 @@ globally for the first-time Git setup.
 
 When Template 'PowerShellCore' is selected, it will also download and install the VSCode PowerShell extension, the Tyriar Shell Launcher extension and the latest PowerShell Core 64-bit stable version and sets PowerShell as the default language in VSCode.The ShellLauncher extension will be configured with a shell entry for PowerShell, PowerShell Core, cmd and Git bash.
 
-#### EXAMPLE 4: Install VSCode and Git and additional VSCode extension 
+#### EXAMPLE 4: Install VSCode, Git and additional VSCode extension 
 ```
 Invoke-VSCodeInstaller -Architecture 'x86' -Build 'insider' -AdditionalExtensions @('ahmadawais.shades-of-purple')
 ```
@@ -67,3 +72,5 @@ Invoke-VSCodeUninstaller -IncludeGit -IncludePowerShellCore
 ```
 This command uninstalls Visual Studio Code, Git and PowerShell Core from the local system.
 <br/><br/>
+
+![Invoke-VSCodeInstaller](https://github.com/ZooDeploy/VSCodeInstaller/blob/master/img/uvsc01.gif)
