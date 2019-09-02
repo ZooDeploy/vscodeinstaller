@@ -57,15 +57,6 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)\drop\vscodeinstaller'
     OverWrite: true
 
-# Create VScodeInstaller module artifact for PSGallery
-- task: CopyFiles@2
-  displayName: 'Create module artifact for PSGallery'
-  inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)'
-    Contents: |
-      vscodeinstaller\**
-    TargetFolder: '$(Build.ArtifactStagingDirectory)\drop\psgallery'
-
 - task: PublishBuildArtifacts@1
   displayName: 'Publish build artifacts'
   inputs:
