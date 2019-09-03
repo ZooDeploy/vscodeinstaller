@@ -172,7 +172,7 @@ provided no SkipGitInstallation option is selected.
 If Template 'PowerShellCore' is selected, it also
 specifies if the 32-bit oder 64-bit version of the PowerShell Core for Windows will be downloaded and
 installed.
-Default is the 64-bit.
+Default value is 64-bit.
 
 ```yaml
 Type: String
@@ -191,7 +191,8 @@ Specifies if the insider (preview) version or the stable version of the Visual S
 be downloaded and installed.
 If Template 'PowerShellCore' is selected, it also specifies if the preview
 version or the stable version of PowerShell Core for Windows will be downloaded and installed.
-Standard is the stable version.
+Default
+value is stable.
 
 ```yaml
 Type: String
@@ -243,7 +244,7 @@ Accept wildcard characters: False
 Specifies if an User oder System Visual Studio Code setup will be downloaded and installed.
 The
 InstallerType User does not require administrator privileges for installation as the install location will
-be under your user local AppData (LOCALAPPDATA) folder.
+be under your user local AppData ($env:LOCALAPPDATA) folder.
 User setup also provides a smoother background
 update experience.
 
@@ -280,8 +281,8 @@ The name of the template to use with the Invoke-VSCodeInstaller command.
 To see a list of available
 templates use the Get-VSCodeInstallTemplate command.
 
-You can define your own templates in the VSCodeTemplateData.psd1 file in the data section of the
-VSCodeInstaller module.
+You can define your own templates in the VSCodeTemplateData.psd1 file located in the VSCodeInstaller
+module folder.
 
 ```yaml
 Type: String
