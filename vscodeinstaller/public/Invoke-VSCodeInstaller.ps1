@@ -18,23 +18,23 @@ function Invoke-VSCodeInstaller {
         The name of the template to use with the Invoke-VSCodeInstaller command. To see a list of available
         templates use the Get-VSCodeInstallTemplate command.
 
-        You can define your own templates in the VSCodeTemplateData.psd1 file in the data section of the
-        VSCodeInstaller module.
+        You can define your own templates in the VSCodeTemplateData.psd1 file located in the VSCodeInstaller
+        module folder.
     .PARAMETER InstallerType
         Specifies if an User oder System Visual Studio Code setup will be downloaded and installed. The
         InstallerType User does not require administrator privileges for installation as the install location will
-        be under your user local AppData (LOCALAPPDATA) folder. User setup also provides a smoother background
+        be under your user local AppData ($env:LOCALAPPDATA) folder. User setup also provides a smoother background
         update experience.
     .PARAMETER Architecture
         Specifies if the 32-bit or 64-bit Visual Studio Code and Git setup will be downloaded and installed
         provided no SkipGitInstallation option is selected. If Template 'PowerShellCore' is selected, it also
         specifies if the 32-bit oder 64-bit version of the PowerShell Core for Windows will be downloaded and
-        installed. Default is the 64-bit.
+        installed. Default value is 64-bit.
     .PARAMETER Build
         Specifies if the insider (preview) version or the stable version of the Visual Studio Code setup file will
         be downloaded and installed. If Template 'PowerShellCore' is selected, it also specifies if the preview
-        version or the stable version of PowerShell Core for Windows will be downloaded and installed.
-        Standard is the stable version.
+        version or the stable version of PowerShell Core for Windows will be downloaded and installed. Default
+        value is stable.
     .PARAMETER AdditionalExtensions
         Specifies the full name of the extenisions to install. An array of extension names is accepted.
         Define the full name in the following way: <publisher name>.<extension name>, for example ms-python.python.
