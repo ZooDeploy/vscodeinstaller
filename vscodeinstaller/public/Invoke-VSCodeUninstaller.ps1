@@ -39,18 +39,18 @@ function Invoke-VSCodeUninstaller {
 
     if ($PSCmdlet.ShouldProcess("Continue uninstallation?")) {
         ## VSCode uninstall
-        $uninstallerPath = @(
-            'C:\Users\*\AppData\Local\Programs\Microsoft VS Code*\unins*.exe',
-            'C:\Program Files*\Microsoft VS Code*\unins*.exe'
+        $path = @(
+            "$env:SystemDrive\Program Files*\Microsoft VS Code*\unins*.exe",
+            "$env:SystemDrive\Users\*\AppData\Local\Programs\Microsoft VS Code*\unins*.exe"
         )
-        $vscodeUninst = Resolve-Path $uninstallerPath -ErrorAction SilentlyContinue
-        $vscodeUninst = $vscodeUninst | Select-Object -ExpandProperty Path -First 1 -ErrorAction SilentlyContinue
+        $vscodeUninstaller = Resolve-Path $path -ErrorAction SilentlyContinue
+        $vscodeUninstaller = $vscodeUninstaller | Select-Object -ExpandProperty Path -First 1 -EA SilentlyContinue
 
-        if ($vscodeUninst) {
+        if ($vscodeUninstaller) {
             Write-Verbose ($localized.StartUninstallation -f $localized.VSCode)
-            try{
+            try {
                 $spParam = @{
-                    FilePath = $vscodeUninst
+                    FilePath = $vscodeUninstaller
                     ArgumentList ='/VERYSILENT'
                     Wait = $true
                     PassThru = $true
