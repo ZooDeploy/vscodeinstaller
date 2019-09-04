@@ -13,7 +13,7 @@
     Author = 'Chris Rossi'
 
     # Company or vendor of this module
-    CompanyName = 'ZooDeploy'
+    # CompanyName = 'ZooDeploy'
 
     # Copyright statement for this module
     Copyright = '(c) 2019 Chris Rossi. All rights reserved.'
