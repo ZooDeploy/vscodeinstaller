@@ -43,7 +43,14 @@ function Invoke-GitDownload {
     $pattern = "{0}-bit.exe" -f $arch
 
     try{
-        $web = Invoke-WebRequest -Uri $uri -UseBasicParsing -ErrorAction Stop
+        $proxy = [System.Net.WebRequest]::GetSystemWebproxy()
+        if ($proxy.IsBypassed($uri)) {
+            $web = Invoke-WebRequest $uri -UseBasicParsing -ErrorAction Stop
+        }
+        else {
+            $proxUri = $proxy.GetProxy($uri).AbsoluteUri
+            $web = Invoke-WebRequest $uri -UseBasicParsing -Proxy $proxUri -ProxyUseDefaultCredentials -ErrorAction Stop
+        }
     }
     catch{
         throw ($localized.WebResourceDownloadFailedError -f $uri)
