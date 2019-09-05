@@ -48,6 +48,5 @@ function Get-VSCodeInstallTemplate {
     }
     else {
         'No templata data found.'
-        $PSScriptRoot
     }
 }
