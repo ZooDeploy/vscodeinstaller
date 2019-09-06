@@ -69,23 +69,23 @@ Task BuildPrivateDocs -depends Analyze, UnitTest, BuildPublicDocs {
 
         foreach ($privateFunction in $privateFunctions) {
             $helpDoc = $privateHelp | Where-Object {$_.Basename -like $privateFunction.Name}
-            $functionDefinition = "Function {0} {{ {1} }}" -f $privateFunction.name, $privateFunction.Definition
+            $functionDefinition = 'Function {0} {{ {1} }}' -f $privateFunction.name, $privateFunction.Definition
             . ([scriptblock]::Create($functionDefinition))
 
             if (-not $helpDoc) {
                 $nmParams = @{
-                    Command               = $privateFunction.Name
-                    Force                 = $true
+                    Command = $privateFunction.Name
+                    Force = $true
                     AlphabeticParamsOrder = $true
-                    OutputFolder          = $args[2]
-                    WarningAction         = 'SilentlyContinue'
+                    OutputFolder = $args[2]
+                    WarningAction = 'SilentlyContinue'
                 }
                 New-MarkdownHelp @nmParams
             }
             $umParams = @{
-                Path                  = "$($args[2])\{0}.md" -f $privateFunction.Name
+                Path = '{0}\{1}.md' -f $args[2], $privateFunction.Name
                 AlphabeticParamsOrder = $true
-                WarningAction         = 'SilentlyContinue'
+                WarningAction = 'SilentlyContinue'
             }
             Update-MarkdownHelp @umParams
             Remove-Item "function:\$($privateFunction.name)" -ErrorAction SilentlyContinue
@@ -107,3 +107,21 @@ task FunctionalTest {
         Write-Error -Message 'One or more functional tests failed. Build cannot continue!'
     }
 } -description 'Run functional tests'
+
+task PublishToPowerShellGallery {
+    $path = '{0}\vscodeinstaller\vscodeinstaller.psd1' -f $PSScriptRoot
+    $version = (Import-PowerShellDataFile -Path $path).ModuleVersion
+    Write-Output "Start publishing PowerShell module VSCodeInstaller '$version' to the PowerShell Gallery"
+    try {
+        $pmParam = @{
+            Path = "$PSScriptRoot\vscodeinstaller"
+            NuGetApiKey = $env:PSGalleryApiKey
+            ErrorAction = 'Stop'
+        }
+        Publish-Module @pmParam
+        Write-Output 'VSCodeInstaller PowerShell module published to the PowerShell Gallery'
+    }
+    catch {
+        throw "Could not publish module to PSGallery: $($_.Exception.Message)"
+    }
+} -description 'Publish module to PowerShell Gallery'
