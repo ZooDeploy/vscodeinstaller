@@ -109,7 +109,7 @@ task FunctionalTest {
 } -description 'Run functional tests'
 
 task PublishToPowerShellGallery {
-    $path = '{0}\vscodeinstaller\vscodeinstaller.psd1' -f $PSScriptRoot
+    $path = "$PSScriptRoot\vscodeinstaller\vscodeinstaller.psd1"
     $version = (Import-PowerShellDataFile -Path $path).ModuleVersion
     Write-Output "Start publishing PowerShell module VSCodeInstaller '$version' to the PowerShell Gallery"
     try {
