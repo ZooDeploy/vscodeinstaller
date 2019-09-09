@@ -4,6 +4,7 @@ $lData = 'VSCodeInstallerStrings.psd1'
 Import-Module -Name "$ThisModulePath\vscodeinstaller\$ThisModuleName.psd1" -Force
 Import-LocalizedData -BindingVariable localized -BaseDirectory "$ThisModulePath\vscodeinstaller" -FileName $lData
 
+
 Describe 'Unit tests for function Invoke-VSCodeInstaller' {
 
     $verboseCapture = "TestDrive:\Capture.txt"
